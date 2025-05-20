@@ -30,13 +30,14 @@ function makeBall(x, y, colorIn){
       ctx.fill();
     },
     update: function(){
-      if (table.pocketable(this.x, this.y)){
+      if (table.pocketable(this.xPos, this.yPos)){
         this.xAcc = 0;
         this.yAcc = 0;
         this.xVel = 0;
         this.yVel = 0;
-        this.xPos = -100;
-        this.yPos = -100;
+        this.xPos = 0;
+        this.yPos = 0;
+        this.color = "#222222";
       }
       this.xVel += this.xAcc;
       this.yVel += this.yAcc;
@@ -99,7 +100,7 @@ function makeTable(){
     },
     pocketable: function(ballX, ballY){
       for (const loc of this.pockets){
-        if( Math.hypot(ballX - loc.x, ballY - loc.y) < this.radius){
+        if( Math.hypot(ballX - loc.x, ballY - loc.y) < this.pocketRadius){
           console.log("Pocketed");
           return true;
         }
